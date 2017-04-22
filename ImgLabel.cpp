@@ -281,7 +281,7 @@ QImage ImgLabel::compute_gradient_graph(QImage &img) {
                int n_q=new_j+offsety;//this nodes y-axis
                QPoint cost_graph(n_p,n_q);
                if(n_p>=0&&n_q>=0&&n_p<img_width&&n_q<img_height) {
-                  double cost=node_graph[index]->linkCost[k];
+                  double cost=node_graph[index]->link_cost[k];
                   //uint rgb=QColor(cost);  //problem here
                   temp.setPixel(cost_graph,cost);
                } else continue;
@@ -318,7 +318,7 @@ void ImgLabel::compute_adjacent_matrix(QImage &img) {
             node_graph[index]=new Node();
             node_graph[index]->column=i;
             node_graph[index]->row=j;
-            node_graph[index]->linkCost=temp_costLink;
+            node_graph[index]->link_cost = temp_costLink;
         }
     }
 }
