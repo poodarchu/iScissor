@@ -49,20 +49,14 @@ public slots:
 private slots:
 
     void on_actionOpen_triggered();
-
-    void on_actionZoom_in_triggered();
-    void on_actionZoom_Out_triggered();
-
-    void on_actionScissorStart_triggered();
-    void on_actionScissorStop_triggered();
-
-    void on_actionScissorUndoLast_triggered();
-
-    void on_actionExit_triggered();
-
     void on_actionSaveMask_triggered();
     void on_actionSaveContour_triggered();
 
+    void on_actionZoom_in_triggered();
+    void on_actionZoom_Out_triggered();
+    void on_actionScissorStart_triggered();
+    void on_actionScissorStop_triggered();
+    void on_actionScissorUndoLast_triggered();
 
 private:
     Ui::iScissor *ui;

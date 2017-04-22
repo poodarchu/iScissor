@@ -1,10 +1,9 @@
 #include "iScissor.h"
 #include "ui_iScissor.h"
+
 #include<iostream>
 
-iScissor::iScissor(QWidget *parent):
-    QMainWindow(parent),
-    ui(new Ui::iScissor)
+iScissor::iScissor(QWidget *parent): QMainWindow(parent), ui(new Ui::iScissor)
 {
     ui->setupUi(this);
 
@@ -17,10 +16,7 @@ iScissor::iScissor(QWidget *parent):
 
     ui->scrollArea->setBackgroundRole(QPalette::Dark);
 
-
-    //Boolean Variable Init
     image_loaded=false;
-
     scaleFactor = 1.0;
 }
 
@@ -39,11 +35,10 @@ void iScissor::on_actionOpen_triggered()
     if (!fileName.isEmpty()) {
          QImage Original_Image(fileName);
          if (Original_Image.isNull()) {
-             QMessageBox::information(this, tr("Image Viewer"),
-                                      tr("Cannot load %1.").arg(fileName));
+             QMessageBox::information(this, tr("Image Viewer"), tr("Cannot load %1.").arg(fileName));
              return;
          }
-         //original_img=ui->label->ComputeNodePixel(Original_Image);
+
          original_img=Original_Image.copy();
          img_height=original_img.height();
          img_width=original_img.width();
@@ -65,7 +60,6 @@ void iScissor::on_actionOpen_triggered()
 
 void iScissor::scaleImage(double factor)
 {
-    //Q_ASSERT(ui->label->pixmap());
     scaleFactor *= factor;
     ui->label->resize(scaleFactor * (ui->label->pixmap()->size()));
 
@@ -73,10 +67,12 @@ void iScissor::scaleImage(double factor)
     adjustScrollBar(ui->scrollArea->verticalScrollBar(), factor);
 
 }
+
 void iScissor::adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
      scrollBar->setValue(int(factor * scrollBar->value()+ ((factor - 1) * scrollBar->pageStep()/2)));
 }
+
 void iScissor::on_actionZoom_in_triggered()
 {
      scaleImage(1.25);
@@ -100,14 +96,28 @@ void iScissor::on_actionSaveContour_triggered()
              return;
          }
     tmp.save(fileName);
-
-    //Q_ASSERT(Image_Saved);
     }
 }
 
-void iScissor::on_actionExit_triggered()
+void iScissor::on_actionSaveMask_triggered()
 {
-    qApp->exit();
+    ui->label->flood_fill(0,0);
+}
+
+void iScissor::on_actionScissorStart_triggered()
+{
+    ui->label->finish_flag=false;
+    ui->actionScissorStop->setEnabled(true);
+    ui->actionScissorUndoLast->setEnabled(true);
+    ui->actionScissorStart->setDisabled(true);
+}
+
+void iScissor::on_actionScissorStop_triggered()
+{
+    ui->label->finish_clear();
+    ui->actionScissorStop->setDisabled(true);
+    ui->actionScissorUndoLast->setDisabled(true);
+    ui->actionScissorStart->setEnabled(true);
 }
 
 void iScissor::on_actionScissorUndoLast_triggered()
@@ -142,29 +152,4 @@ void iScissor::on_actionScissorUndoLast_triggered()
             }
         }
     }
-    else
-    {
-        //Error
-    }
-}
-
-void iScissor::on_actionScissorStart_triggered()
-{
-    ui->label->finish_flag=false;
-    ui->actionScissorStop->setEnabled(true);
-    ui->actionScissorUndoLast->setEnabled(true);
-    ui->actionScissorStart->setDisabled(true);
-}
-
-void iScissor::on_actionScissorStop_triggered()
-{
-    ui->label->finish_clear();
-    ui->actionScissorStop->setDisabled(true);
-    ui->actionScissorUndoLast->setDisabled(true);
-    ui->actionScissorStart->setEnabled(true);
-}
-
-void iScissor::on_actionSaveMask_triggered()
-{
-    ui->label->flood_fill(0,0);
 }

@@ -7,7 +7,7 @@
 #include <list>
 #include <limits>
 #include <queue>
-#include <utility> // for pair
+#include <utility>
 #include <algorithm>
 #include <iterator>
 
