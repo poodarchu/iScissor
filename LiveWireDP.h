@@ -36,45 +36,45 @@ struct Node{
       state = 0;
     }
 
-    void neighbour(int &offsetX, int &offsetY, int linkIndex)
+    void neighbour(int &offsetX, int &offsetY, int link_idx)
     {
 
-        if (linkIndex == 0)
+        if (link_idx == 0)
         {
             offsetX = 1;
             offsetY = 0;
         }
-        else if (linkIndex == 1)
+        else if (link_idx == 1)
         {
             offsetX = 1;
             offsetY = -1;
         }
-        else if (linkIndex == 2)
+        else if (link_idx == 2)
         {
             offsetX = 0;
             offsetY = -1;
         }
-        else if (linkIndex == 3)
+        else if (link_idx == 3)
         {
             offsetX = -1;
             offsetY = -1;
         }
-        else if (linkIndex == 4)
+        else if (link_idx == 4)
         {
             offsetX = -1;
             offsetY = 0;
         }
-        else if (linkIndex == 5)
+        else if (link_idx == 5)
         {
             offsetX = -1;
             offsetY = 1;
         }
-        else if (linkIndex == 6)
+        else if (link_idx == 6)
         {
             offsetX = 0;
             offsetY = 1;
         }
-        else if (linkIndex == 7)
+        else if (link_idx == 7)
         {
             offsetX = 1;
             offsetY = 1;
