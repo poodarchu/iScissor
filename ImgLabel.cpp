@@ -353,7 +353,6 @@ void ImgLabel::flood_fill(int start_x,int start_y) {
         bool_array_boundary[j*original_img.width()+i]=true;
     }
 
-    //QRgb value = qRgba(0,0,0,0);
     mask.fill(qRgba(0,0,0,0));
 
     QPoint start_p(start_x,start_y);
