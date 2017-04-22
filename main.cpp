@@ -1,13 +1,11 @@
-#include "mainwindow.h"
+#include "iScissor.h"
 #include <QApplication>
-#include <opencv2/opencv.hpp>
-
-using namespace cv;
-
+#include <iostream>
+using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    iScissor w;
     w.show();
 
     return a.exec();
