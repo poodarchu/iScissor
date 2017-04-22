@@ -1,15 +1,17 @@
 #ifndef iScissor_H
 #define iScissor_H
 
-#include <QMainWindow>
 #include <iostream>
+
+#include <QMainWindow>
 #include <QLabel>
 #include <QProcess>
 #include <QString>
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <ImgLabel.h>
+
+#include "ImgLabel.h"
 #include "LiveWireDP.h"
 
 namespace Ui {
@@ -41,6 +43,7 @@ public:
     explicit iScissor(QWidget *parent = 0);
 
     ~iScissor();
+
 public slots:
 
 private slots:
@@ -63,16 +66,16 @@ private slots:
 
 private:
     Ui::iScissor *ui;
+
     bool image_loaded;
     bool seed_changed;
+
     //Scaling
     void scaleImage(double factor);
     void adjustScrollBar(QScrollBar *scrollBar, double factor);
-    //void adjustScrollBar(QScrollBar *scrollBar, double factor);
+
     double scaleFactor;
-//    void paintEvent(QPaintEvent *e);
-//    QLabel *label;
-//    QScrollArea *scrollArea;
+
 signals:
     void scale_changed(double);
 };

@@ -9,7 +9,9 @@
 #include <QFileDialog>
 #include <QEvent>
 #include <QDebug>
+
 #include <iostream>
+
 #include "LiveWireDP.h"
 #include <math.h>
 
@@ -37,9 +39,9 @@ public:
     QPen paintpen_fixed_wire;
 
     LiveWireDP my_LiveWireDP;
-    int img_width,img_height;
+    int img_width, img_height;
 
-    void add_wire_points(int a_current_x,int a_current_y);
+    void add_wire_points(int a_current_x, int a_current_y);
 
     double* compute_cost_link(QImage &img, int i, int j);
     void compute_adjacent_matrix(QImage &img);
@@ -47,7 +49,7 @@ public:
     QImage compute_node_pixel(QImage &img);
 
     void recover_matrix();
-    void reset_seeds(int x,int y,int undo);
+    void reset_seeds(int x, int y, int undo);
 
     bool finish_flag;
     bool *bool_array_boundary;
@@ -56,7 +58,7 @@ public:
     bool contour_detected;
     bool toggle;
 
-    void flood_fill(int start_x,int start_y);
+    void flood_fill(int start_x, int start_y);
     void closed_contour_detect();
 
     bool inside_img(QPoint p);

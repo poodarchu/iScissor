@@ -18,6 +18,7 @@ HEADERS  += iScissor.h \
     LiveWireDP.h \
     ui_iScissor.h \
     intelligentscissor.h
+
 FORMS    += iScissor.ui
 
-#RESOURCES += res_file.qrc
+RESOURCES += tumblr_test.jpg
