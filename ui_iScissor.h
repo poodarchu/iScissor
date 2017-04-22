@@ -22,7 +22,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
-#include <my_label.h>
+#include <ImgLabel.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -50,7 +50,7 @@ public:
     QGridLayout *gridLayout;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    my_label *label;
+    ImgLabel *label;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -156,7 +156,7 @@ public:
         scrollAreaWidgetContents->setEnabled(true);
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1311, 529));
         scrollAreaWidgetContents->setMinimumSize(QSize(1311, 529));
-        label = new my_label(scrollAreaWidgetContents);
+        label = new ImgLabel(scrollAreaWidgetContents);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 30, 991, 471));
         scrollArea->setWidget(scrollAreaWidgetContents);

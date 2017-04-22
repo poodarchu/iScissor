@@ -1,9 +1,9 @@
-#include "my_label.h"
+#include "ImgLabel.h"
 #include <QMessageBox>
 
 using namespace std;
 
-my_label::my_label(QWidget *parent):QLabel(parent)
+ImgLabel::ImgLabel(QWidget *parent):QLabel(parent)
 {
     this->setMouseTracking(true);
 
@@ -25,11 +25,11 @@ my_label::my_label(QWidget *parent):QLabel(parent)
     paintpen_fixed_wire.setColor(Qt::yellow);
 }
 
-my_label::~my_label(){
+ImgLabel::~ImgLabel(){
 
 }
 
-void my_label::mouseMoveEvent(QMouseEvent *mouse_event)
+void ImgLabel::mouseMoveEvent(QMouseEvent *mouse_event)
 {
     QPoint mouse_pos=mouse_event->pos();
     if(mouse_pos.x()<=this->size().width() && mouse_pos.y()<=this->size().height()&&!finish_flag)
@@ -52,7 +52,7 @@ void my_label::mouseMoveEvent(QMouseEvent *mouse_event)
     }
 }
 
-void my_label::mousePressEvent(QMouseEvent *mouse_event)
+void ImgLabel::mousePressEvent(QMouseEvent *mouse_event)
 {
 
     if(mouse_event->button()==Qt::LeftButton&&!finish_flag)
@@ -93,7 +93,7 @@ void my_label::mousePressEvent(QMouseEvent *mouse_event)
         }
         int seed_index=seed_y*img_width+seed_x;
         this->recover_matrix();
-        my_dijkstra.compute_paths(seed_index,node_graph,img_width,img_height);
+        my_LiveWireDP.compute_paths(seed_index,node_graph,img_width,img_height);
 
     }
     //Move the Image BY dragging
@@ -103,7 +103,7 @@ void my_label::mousePressEvent(QMouseEvent *mouse_event)
     }
 
 }
-void my_label::mouseDoubleClickEvent(QMouseEvent * mouse_event)
+void ImgLabel::mouseDoubleClickEvent(QMouseEvent * mouse_event)
 {
     if(mouse_event->button()==Qt::LeftButton&&!finish_flag)
     {
@@ -120,7 +120,7 @@ void my_label::mouseDoubleClickEvent(QMouseEvent * mouse_event)
         this->adjustSize();
     }
 }
-void my_label::paintEvent(QPaintEvent *e)
+void ImgLabel::paintEvent(QPaintEvent *e)
 {
     QLabel::paintEvent(e);
     if(paint_seed_flag || paint_cut_line)
@@ -178,28 +178,28 @@ void my_label::paintEvent(QPaintEvent *e)
     }
 
 }
-void my_label::receive_scale(double scale)
+void ImgLabel::receive_scale(double scale)
 {
     scale_factor=scale;
     scale_changed=true;
 }
-void my_label::add_wire_points(int a_current_x,int a_current_y)
+void ImgLabel::add_wire_points(int a_current_x,int a_current_y)
 {
     wire_points.clear();
-    wire_points=my_dijkstra.show_path(a_current_x,a_current_y,node_graph,img_width);
+    wire_points=my_LiveWireDP.show_path(a_current_x,a_current_y,node_graph,img_width);
 }
 
-void my_label::reset_seeds(int x, int y,int undo)
+void ImgLabel::reset_seeds(int x, int y,int undo)
 {
     seed_x=x;
     seed_y=y;
     int seed_index=seed_y*img_width+seed_x;
     this->recover_matrix();
     if(undo==0)
-    my_dijkstra.compute_paths(seed_index,node_graph,img_width,img_height);
+    my_LiveWireDP.compute_paths(seed_index,node_graph,img_width,img_height);
 
 }
-double* my_label::compute_cost_link(QImage &img, int i, int j)
+double* ImgLabel::compute_cost_link(QImage &img, int i, int j)
 {
      double *costlink=new double[8];
      double RDlink[8];
@@ -285,7 +285,7 @@ double* my_label::compute_cost_link(QImage &img, int i, int j)
      return costlink;
 }
 
-QImage my_label::compute_gradient_graph(QImage &img)
+QImage ImgLabel::compute_gradient_graph(QImage &img)
 {
     int W=img_width*3;
     int H=img_height*3;
@@ -320,7 +320,7 @@ QImage my_label::compute_gradient_graph(QImage &img)
      return temp;
 }
 
-QImage my_label::compute_node_pixel(QImage &img)
+QImage ImgLabel::compute_node_pixel(QImage &img)
 {
     int W=img_width*3;
     int H=img_height*3;
@@ -337,7 +337,7 @@ QImage my_label::compute_node_pixel(QImage &img)
     return temp;
 }
 
-void my_label::compute_adjacent_matrix(QImage &img)
+void ImgLabel::compute_adjacent_matrix(QImage &img)
 {
 
     node_graph=node_list(img_height*img_width);
@@ -357,7 +357,7 @@ void my_label::compute_adjacent_matrix(QImage &img)
 
 }
 
-void my_label::recover_matrix()
+void ImgLabel::recover_matrix()
 {
     for(int i=0;i<img_width;i++)
     {
@@ -372,7 +372,7 @@ void my_label::recover_matrix()
 
 }
 
-void my_label::flood_fill(int start_x,int start_y)
+void ImgLabel::flood_fill(int start_x,int start_y)
 {
     QImage temp(original_img.width(),original_img.height(),QImage::Format_ARGB32);
     mask=temp;
@@ -439,11 +439,11 @@ void my_label::flood_fill(int start_x,int start_y)
     mask.save(fileName);
     }
 }
-bool my_label::inside_img(QPoint p)
+bool ImgLabel::inside_img(QPoint p)
 {
     return (p.x()>= 0) && (p.x() < mask.width()) && (p.y()>= 0) && (p.y() < mask.height());
 }
-void my_label::closed_contour_detect()
+void ImgLabel::closed_contour_detect()
 {
     int size_array=original_img.width()*original_img.height();
     closed_contour = (bool*)malloc(sizeof(bool)*size_array);
@@ -462,7 +462,7 @@ void my_label::closed_contour_detect()
         closed_contour[index]=true;
     }
 }
-void my_label::finish_clear()
+void ImgLabel::finish_clear()
 {
     finish_flag=true;
     fixed_wrie_points.clear();

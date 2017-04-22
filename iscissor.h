@@ -9,8 +9,8 @@
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <my_label.h>
-#include "dijkstra.h"
+#include <ImgLabel.h>
+#include "LiveWireDP.h"
 
 namespace Ui {
 class iScissor;
@@ -33,7 +33,7 @@ public:
     int seed_x;
     int seed_y;
 
-    Dijkstra my_dijkstra;
+    LiveWireDP my_LiveWireDP;
 
     std::vector<weight_t> min_distance;
     std::vector<vertex_t> prev_vertex;

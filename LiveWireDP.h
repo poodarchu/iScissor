@@ -1,5 +1,5 @@
-#ifndef DIJKSTRA_H
-#define DIJKSTRA_H
+#ifndef LiveWireDP_H
+#define LiveWireDP_H
 #include <iostream>
 #include <vector>
 #include <string>
@@ -78,12 +78,12 @@ typedef std::vector<Node*> node_list;
 //typedef std::vector<std::vector<neighbor> > adjacency_list_t;
 typedef std::pair<weight_t, vertex_t> weight_vertex_pair_t;
 
-class Dijkstra
+class LiveWireDP
 {
 public:
-    Dijkstra();
+    LiveWireDP();
     void compute_paths(vertex_t source,node_list &node_graph,int width,int height);
     QVector<QPoint> show_path(int i,int j,node_list &node_graph,int h);
 };
 
-#endif // DIJKSTRA_H
+#endif // LiveWireDP_H

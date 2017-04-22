@@ -10,12 +10,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         iScissor.cpp \
-    my_label.cpp \
-    dijkstra.cpp
+    ImgLabel.cpp \
+    LiveWireDP.cpp
 
 HEADERS  += iScissor.h \
-    my_label.h \
-    dijkstra.h \
+    ImgLabel.h \
+    LiveWireDP.h \
     ui_iScissor.h \
     intelligentscissor.h
 FORMS    += iScissor.ui

@@ -1,5 +1,5 @@
-#ifndef MY_LABEL_H
-#define MY_LABEL_H
+#ifndef ImgLabel_H
+#define ImgLabel_H
 
 #include <QLabel>
 #include <QObject>
@@ -10,17 +10,17 @@
 #include <QEvent>
 #include <QDebug>
 #include <iostream>
-#include "dijkstra.h"
+#include "LiveWireDP.h"
 #include <math.h>
 
-class my_label :public QLabel
+class ImgLabel :public QLabel
 {
     Q_OBJECT
-    
+
 public:
 
-    my_label(QWidget *parent =0);
-    ~my_label();
+    ImgLabel(QWidget *parent =0);
+    ~ImgLabel();
 
     QImage original_img;
     QPoint offset;
@@ -36,7 +36,7 @@ public:
     QPen paintpen_wire;
     QPen paintpen_fixed_wire;
 
-    Dijkstra my_dijkstra;
+    LiveWireDP my_LiveWireDP;
     int img_width,img_height;
 
     void add_wire_points(int a_current_x,int a_current_y);
@@ -90,4 +90,4 @@ public slots:
     void receive_scale(double);
 };
 
-#endif // MY_LABEL_H
+#endif // ImgLabel_H

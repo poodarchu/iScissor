@@ -66,7 +66,7 @@
          <height>529</height>
         </size>
        </property>
-       <widget class="my_label" name="label">
+       <widget class="ImgLabel" name="label">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -77,6 +77,9 @@
         </property>
         <property name="text">
          <string>TextLabel</string>
+        </property>
+        <property name="indent">
+         <number>0</number>
         </property>
        </widget>
       </widget>
@@ -295,9 +298,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>my_label</class>
+   <class>ImgLabel</class>
    <extends>QLabel</extends>
-   <header location="global">my_label.h</header>
+   <header location="global">ImgLabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

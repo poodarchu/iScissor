@@ -1,7 +1,7 @@
-#include "dijkstra.h"
+#include "LiveWireDP.h"
 using namespace std;
 
-Dijkstra::Dijkstra()
+LiveWireDP::LiveWireDP()
 {
 
 }
@@ -9,7 +9,7 @@ struct cmp{
     bool operator() ( Node* a, Node* b ){
         return a->totalCost> b->totalCost; }
 };
-QVector<QPoint> Dijkstra::show_path(int i,int j,node_list &node_graph,int width)
+QVector<QPoint> LiveWireDP::show_path(int i,int j,node_list &node_graph,int width)
 {
       QVector<QPoint> path_vector;
       int dest=j*width+i;
@@ -32,7 +32,7 @@ QVector<QPoint> Dijkstra::show_path(int i,int j,node_list &node_graph,int width)
       return path_vector;
 }
 
-void Dijkstra::compute_paths(vertex_t source, node_list &node_graph,int width,int height)
+void LiveWireDP::compute_paths(vertex_t source, node_list &node_graph,int width,int height)
 {
          //cout<<"size:"<<node_graph.size()<<endl;
          node_graph[source]->totalCost=0;
@@ -90,6 +90,3 @@ void Dijkstra::compute_paths(vertex_t source, node_list &node_graph,int width,in
 
              }
 }
-
-
-
